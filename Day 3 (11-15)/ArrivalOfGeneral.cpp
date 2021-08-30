@@ -5,33 +5,41 @@ https://codeforces.com/problemset/problem/144/A
 
 */
 
-
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
 
 int main()
 {
     int n;
-    cin>>n;
-    int a[n];
-    for(int i=0; i<n; i++)
-        cin>>a[i];
-    int maxi = 32678, mini = 0, maxim = 0, minim = 32678;
-    for(int i=0; i<n; i++){
-        maxim = max(maxim, a[i]);
-        if(maxim == a[i]){
-            maxi = min(maxi, i);
+    int maxvalue = 0;
+    int minvalue = 1000;
+    int maxindex = 0;
+    int minindex = 0;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        if (x > maxvalue)
+        {
+            maxindex = i;
+            maxvalue = x;
         }
-
-        minim = min(minim, a[i]);
-        if(minim == a[i])
-           mini = max(mini, i);
+        if (x <= minvalue)
+        {
+            minindex = i;
+            minvalue = x;
+        }
     }
-    if(maxi < mini)
-    cout<<(maxi-1) + (n - mini);
+    //cout<<maxindex<<"   max"<<minindex<<"min\n";
+    if (maxindex > minindex)
+    {
+        cout << (maxindex - 1) + (n - minindex) - 1;
+    }
     else
-    cout<<(maxi-1) + (n - mini) - 1; 
-    
+    {
+        cout << (maxindex - 1) + (n - minindex);
+    }
     return 0;
-}
+}    
